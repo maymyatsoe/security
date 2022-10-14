@@ -7,10 +7,12 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import static com.example.springsecuritymaster.security.SecurityRoles.*;
+
+import static com.example.springsecuritymaster.security.SecurityRoles.DEPARTMENTS_CREATE;
+import static com.example.springsecuritymaster.security.SecurityRoles.ROLES_PREFIX;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD,ElementType.TYPE})
-@Secured(ROLES_PREFIX+DEPARTMENTS_ADMIN)
-public @interface IsDepartmentsAdmin {
+@Secured(ROLES_PREFIX+DEPARTMENTS_CREATE)
+public @interface IsDepartmentsCreate {
 }

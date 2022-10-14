@@ -1,8 +1,10 @@
 package com.example.springsecuritymaster;
 
 import com.example.springsecuritymaster.dao.CustomerDao;
+import com.example.springsecuritymaster.dao.DepartmentDao;
 import com.example.springsecuritymaster.dao.EmployeeDao;
 import com.example.springsecuritymaster.ds.Customer;
+import com.example.springsecuritymaster.ds.Department;
 import com.example.springsecuritymaster.ds.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -18,6 +20,8 @@ public class SpringSecurityMasterApplication {
     private CustomerDao customerDao;
     @Autowired
     private EmployeeDao employeeDao;
+    @Autowired
+    private DepartmentDao departmentDao;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringSecurityMasterApplication.class, args);
@@ -62,6 +66,20 @@ public class SpringSecurityMasterApplication {
             employeeDao.save(e2);
             employeeDao.save(e3);
         };
+    }
 
+    @Bean
+    @Transactional
+    //@Profile("dev")
+    public ApplicationRunner runner3() {
+        return runner -> {
+            Department d1 = new Department("AA","HR","YGN");
+            Department d2 = new Department("BB","Marketing","MDY");
+            Department d3 = new Department("CC","Sale","NPT");
+
+            departmentDao.save(d1);
+            departmentDao.save(d2);
+            departmentDao.save(d3);
+        };
     }
 }
